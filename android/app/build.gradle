@@ -156,6 +156,10 @@ android {
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
+            // applicationIdSuffix '.debug'
+            // resValue 'string', 'app_name', 'Debug - NativeModulesPresentation'
+            // buildConfigField('String', 'ENV', '"debug"')
+            // buildConfigField('String', 'BASE_URL', '"https://swapi/api"')
         }
         release {
             // Caution! In production, you need to generate your own keystore file.
@@ -163,6 +167,9 @@ android {
             signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            // resValue 'string', 'app_name', 'NativeModulesPresentation'
+            // buildConfigField('String', 'ENV', '"release"')
+            // buildConfigField('String', 'BASE_URL', '"https://swapi/api"')
         }
     }
 
@@ -187,6 +194,7 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
+    // implementation "com.facebook.react:react-native:0.64.1"
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 
@@ -220,3 +228,9 @@ task copyDownloadableDepsToLibs(type: Copy) {
 }
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
+
+project.ext.vectoricons = [
+  iconFontNames: ['Feather.ttf']
+]
+
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"

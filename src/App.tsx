@@ -1,10 +1,18 @@
 import React from 'react';
-import { Text } from 'react-native';
-
-import img from './assets/img/bg-aplication.svg';
+import { Text, StatusBar } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import Routes from './routes';
+import AppProvider from './hooks';
 
 const App = () => {
-  return <Text>Olá</Text>;
+  return (
+    <NavigationContainer>
+      <StatusBar backgroundColor="#13213c" />
+      <AppProvider>
+        <Routes />
+      </AppProvider>
+    </NavigationContainer>
+  );
 };
 
 export default App;

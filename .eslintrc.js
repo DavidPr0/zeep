@@ -16,15 +16,20 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: "module",
   },
-  plugins: ["react", "@typescript-eslint", "prettier"],
+  plugins: ["react", "@typescript-eslint", "prettier", "import"],
   rules: {
     "prettier/prettier": "error",
     "react/jsx-filename-extension": [
-      "warn",
-      { extensions: [".jsx", ".js", ".tsx", ".svg"] },
+      1,
+      {
+        extensions: [".jsx", ".js", ".tsx", ".svg"]
+      },
     ],
     "import/prefer-default-export": "off",
     "no-param-reassign": "off",
-    "no-console": ["error", { allow: ["tron"] }],
+    "no-console": ["error", {
+      allow: ["tron"]
+    }],
   },
+
 };
