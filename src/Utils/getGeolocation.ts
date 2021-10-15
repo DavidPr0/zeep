@@ -12,16 +12,45 @@ interface coordsData {
 export default function GetGeolocalizations() {
   const [errorMsg, setErrorMsg] = useState('');
   const [coords, setCoords] = useState<coordsData>({} as coordsData);
+  const [currentLatitude, setCurrentLatitude] = useState('');
+  const [currentLongitude, setCurrentLongitude] = useState('');
+  const [watchID, setWatchID] = useState(0);
 
-  useEffect(() => {
-    (async function loadPosition() {
-      const result = requestMultiple([
-        PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
-        PERMISSIONS.ANDROID.ACCESS_BACKGROUND_LOCATION,
-      ]).then(statuses => {
-        const statusFine = statuses[PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION];
-        const statusBack =
-          statuses[PERMISSIONS.ANDROID.ACCESS_BACKGROUND_LOCATION];
+  const getLocation = async () => {
+    const auth = await Geolocation.requestAuthorization("whenInUse");
+    
+    if(auth === "granted") {
+      Geolocation.getCurrentPosition(
+        (position) => {
+          // const currentLatitude = JSON.stringify(position.coords.latitude);
+          // const currentLongitude = JSON.stringify(position.coords.longitude);
+          setCoords({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          });
+          // setCurrentLatitude(currentLatitude);
+          // setCurrentLongitude(currentLongitude);
+        },
+        (error) => console.log(error.message),
+        { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000,
+        }
+      );
+    } else {
+      setErrorMsg('Não foii possível obter a localização.');
+    }
+  }
+  useEffect( () => {
+    if(Platform.OS === 'ios') {
+        getLocation();
+    } else {
+      (async function loadPosition() {
+        const result = requestMultiple([
+          PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
+          PERMISSIONS.ANDROID.ACCESS_BACKGROUND_LOCATION,
+        ]).then(statuses => {
+          const statusFine = statuses[PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION];
+          const statusBack =
+            statuses[PERMISSIONS.ANDROID.ACCESS_BACKGROUND_LOCATION];
 
         if (Platform.Version < 29) {
           if (statusFine == 'granted') {
@@ -29,12 +58,11 @@ export default function GetGeolocalizations() {
           } else {
             setErrorMsg('Usuário não aceitou solicitação de uso do GPS');
           }
+        }
+        if (statusFine == 'granted' && statusBack == 'granted') {
+          return true;
         } else {
-          if (statusFine == 'granted' && statusBack == 'granted') {
-            return true;
-          } else {
-            setErrorMsg('Usuário não aceitou solicitação de uso do GPS');
-          }
+          setErrorMsg('Usuário não aceitou solicitação de uso do GPS');
         }
       });
       if (await result) {
@@ -57,6 +85,7 @@ export default function GetGeolocalizations() {
         );
       }
     })();
+    }
   }, []);
-  return { coords, errorMsg };
+  return { coords, errorMsg, currentLongitude, currentLatitude};
 }
