@@ -15,8 +15,8 @@ import * as Yup from 'yup';
 import { useNavigation } from '@react-navigation/native';
 
 import { useAuth } from '../../hooks/auth';
-import icon from '../../assets/img/icon.png';
-import NameIcon from '../../assets/img/nameIcon.png';
+// import icon from '../../assets/img/icon.png';
+// import NameIcon from '../../assets/img/nameIcon.png';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import getValidationErrors from '../../Utils/getValidationErrors';
@@ -92,7 +92,7 @@ const SignIn: React.FC = () => {
 
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+      // behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       style={{ flex: 1 }}
       enabled>
       <ScrollView
@@ -101,12 +101,12 @@ const SignIn: React.FC = () => {
         <Container>
           <Header>
             <BgSoon>
-              <Image style={{ width: 110, height: 110 }} source={icon} />
+              <Image style={{ width: 110, height: 110 }} source={require('../../assets/img/icon.png')} />
             </BgSoon>
             <NameSoon>
               <Image
                 style={{ resizeMode: 'contain', width: 250 }}
-                source={NameIcon}
+                source={require('../../assets/img/nameIcon.png')}
               />
             </NameSoon>
           </Header>

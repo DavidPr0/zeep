@@ -25,7 +25,7 @@ const Welcome: React.FC = () => {
         }}>
         Sair
       </Button>
-      <Button onPress={() => handleMaps()}>Rotas</Button>
+      <Button onPress={() => handleMaps()}>Rotass</Button>
     </Container>
   );
 };

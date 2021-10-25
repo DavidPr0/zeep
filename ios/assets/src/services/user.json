@@ -1,0 +1,13 @@
+{
+  "data": {
+    "user": {
+      "id": "56323daa-d70d-4e70-b3f9-6993864967bd",
+      "name": "David Freitas",
+      "email": "davipaco2.4@gmails.com",
+      "avatar": "54fb44ca0fc585ad92f1-IMG_4135.jpg",
+      "created_at": "2020-12-03T20:58:02.140Z",
+      "updated_at": "2020-12-16T05:09:24.065Z"
+    },
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MTYxMTc3OTcsImV4cCI6MTYxNjIwNDE5Nywic3ViIjoiNTYzMjNkYWEtZDcwZC00ZTcwLWIzZjktNjk5Mzg2NDk2N2JkIn0.C-nMv5EOWhm5MZOvIalWu4oZxfPiMPtVduDI3w-tpQk"
+  }
+}
