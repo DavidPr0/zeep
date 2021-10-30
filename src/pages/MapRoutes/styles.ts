@@ -8,7 +8,9 @@ export const Container = styled.View`
     right: 0;
     bottom: 0;
 `;
-
+export const ViewFooter = styled.View`
+    
+`;
 // export const Container = styled.View`
 //   flex-direction: column;
 //   flex: 1;

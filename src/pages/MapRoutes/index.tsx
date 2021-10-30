@@ -4,7 +4,7 @@ import { View, Text, Platform } from 'react-native';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 
 import GetGeolocalizations from '../../Utils/getGeolocation';
-import { Container } from './styles';
+import { Container, ViewFooter } from './styles';
 
 const MapRoutes: React.FC = () => {
   const { coords, errorMsg, currentLatitude, currentLongitude } = GetGeolocalizations();
@@ -22,6 +22,9 @@ const MapRoutes: React.FC = () => {
         }}
       >
       </MapView>
+      <ViewFooter>
+        
+      </ViewFooter>
       {/* <Text>Latitudes: {coords.latitude}</Text>
       <Text>Longitude: {coords.longitude}</Text> */}
       <Text>{errorMsg}</Text>
